@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+    <header>
+        <!-- High Scores Link -->
+        <div>
+            
+        </div>
+        <!-- <strong><a href="./highscores.html">View Highscores</a></strong> -->
+        <!-- Timer -->
+        <div class="timer">Time: <span id="gameTimer">0</span></div>
+    </header>
+
+    <!-- Main Screen -->
+    <div>
+        <!-- Instructions -->
+        <div id="mainScreen" class="centered" >
+            <h1>Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-related questions withing the time
+            <br>limit. Keep in mind that incorrect answers will penalize your score/time <br>by ten seconds!</p>
+        </div>
+        <!-- Start Button -->
+        <div class="centered">
+            <button id="startButton" class="quizButtons" >Start Quiz</button>
+        </div>
+    </div>
+
+    <!-- Questions Screen -->
+    <div id="questionsContainer" class="hideContent centered">
+        <div id="quizQuestions" class="quizQuestionsLayout"></div>
+        <ul id="answerButtons" class="answerButtonsLayout"></ul>
+        <div class = "gameControls">
+           <button id="nextButton" class="nextButton btn hideContent">Next</button>
+        </div>
+        <hr id="lineBreak" style="display: none">
+        <p id="checkAnswer" style="display: none;"></p>
+    </div>
+    
+    <!-- Finished Screen -->
+    <div id="scoreSubmit" class="hideContent">
+        <div>
+            <h2>Finished!</h2>
+            <span class="score">You're final score is: <span id="finalScore"></span>/100</span>
+            <br>
+            <br>
+            <form class="form-group">
+                <label for="new-score">Enter your name: </label>
+                <input type="text" id="userName">
+                <button type="button" class="btn submitBtn" id="submitBtn">Submit Score</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- HighScores Screen -->
+    <div id="highScores" class="hideContent">
+        <div>
+            <h2>High Scores</h2>
+            <ul id="highScoresList"></ul>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+<script src="./assets/js/script.js"></script>
+</html>

@@ -1,0 +1,57 @@
+.header{
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-flex;
+}
+
+a{
+    text-align: left;
+}
+
+div.timer{
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+    float: right;
+}
+
+.centered {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.quizButtons {
+    background-color: rgb(151, 3, 151);
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+}
+
+.quizQuestionsLayout {
+    padding-top: 2%;
+}
+
+.answerButtonsLayout{
+    text-align: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 1%;
+}
+
+.answerButtonsLayout button {
+    background-color: rgb(151, 3, 151);
+    color: white;
+    border-radius: 20px;
+}
+.hiddenQuestions {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.gameControls{
+    text-align: center;
+}
+
+.hideContent{
+    display: none;
+}
+
+/*  */
