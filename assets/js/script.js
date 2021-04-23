@@ -1,21 +1,55 @@
-var mainScreenEl = document.getElementById("mainScreen");
-var startQuizEl = document.getElementById("startButton");
-var gameTimerEl = document.getElementById("gameTimer");
-var questionsContainerEl = document.getElementById("questionsContainer");
-var quizQuestionsEl = document.getElementById("quizQuestions");
-var scoreSubmitEl = document.getElementById("scoreSubmit");
-var finalScoreEL = document.getElementById("finalScore");
-var highScoreEl = document.getElementById("highScore");
+// Variables assigned to grab HTML Elements
 var questionInterval = 0;
 var userScore = 0;
 
+var mainScreenEl = document.getElementById("mainScreen");
+var questionsScreenEl = document.getElementById("questionsScreen");
+var finishScreenEl = document.getElementById("finishScreen");
+
+var startQuizEl = document.getElementById("startButton");
+var goBackButtonEl = document.getElementById("goBackButton")
+var clearHighScoresButtonEl = document.getElementById("clearHighScoresButton")
+var gameTimerEl = document.getElementById("gameTimer");
+var quizQuestionsEl = document.getElementById("quizQuestions");
+
+var finalScoreEL = document.getElementById("finalScore");
+var highScoresEl = document.getElementById("highScores");
+var userInitialsEL = document.getElementById("userInitials");
+var submitInitialsEl = document.getElementById("submitInitials");
+var viewHighScoresEl = document.getElementById("viewHighScores");
+
+/* Event Listeners */
+// Start Quiz Event Listener
 startQuizEl.addEventListener('click', startQuizGame)
 
+// Submit Initials Event Listener
+submitInitialsEl.addEventListener("click", function(event){ 
+  storeUserScores(event);
+});
+
+// View the High Scores Event Listener
+viewHighScoresEl.addEventListener("click", function(event) { 
+  showHighScores(event);
+});
+
+// Back to Main Screen Event Listener
+goBackButtonEl.addEventListener("click", function() {
+  mainScreenEl.classList.remove('hideContent')
+  highScoresEl.classList.add('hideContent')
+});
+
+// Clear High Scores Event Listener
+clearHighScoresButtonEl.addEventListener("click", function(){
+  window.localStorage.removeItem("high scores");
+  listOfHighScores.innerHTML = "High Scores are Cleared!";
+});
+
+/* Start Quiz */
 // startQuizGame function will start the timer & hide the main screen
 function startQuizGame(){
   setTimer()
   startQuizEl.classList.add('hideContent')
-  questionsContainerEl.classList.remove('hideContent')
+  questionsScreenEl.classList.remove('hideContent')
   mainScreenEl.classList.add('hideContent')
   showQuestions()
 }
@@ -78,9 +112,71 @@ function showQuestions(){
 
 // Show final score
 function gameOver() {
-  questionsContainerEl.classList.add('hideContent')
-  scoreSubmitEl.classList.remove('hideContent')
+  questionsScreenEl.classList.add('hideContent')
+  finishScreenEl.classList.remove('hideContent')
   finalScoreEL.textContent = userScore;
+}
+
+// Enter User Score in Local Storage
+function storeUserScores(event) {
+  event.preventDefault();
+
+  // Prevents User from entering blank Initials
+  if (userInitialsEL.value === "") {
+    alert("Please enter your initials!");
+    return;
+  } 
+
+  // Store scores into local storage
+  var savedHighScores = localStorage.getItem("high scores");
+  var highScoresArray;
+
+  if (savedHighScores === null) {
+    highScoresArray = [];
+  } else {
+    highScoresArray = JSON.parse(savedHighScores)
+  }
+
+  var userScore = {
+    initials: userInitialsEL.value,
+    score: finalScoreEL.textContent
+  };
+
+  console.log(userScore);
+  highScoresArray.push(userScore);
+
+  // stringify array in order to store in local
+  var highScoresArrayString = JSON.stringify(highScoresArray);
+  window.localStorage.setItem("high scores", highScoresArrayString);
+  
+  // Shows current High Scores
+  showHighScores();
+}
+
+// Show High Score Function
+var i = 0;
+function showHighScores() {
+
+  mainScreenEl.classList.add('hideContent')
+  questionsScreenEl.classList.add('hideContent')
+  finishScreenEl.classList.add('hideContent')
+  highScoresEl.classList.remove('hideContent')
+
+
+  var savedHighScores = localStorage.getItem("high scores");
+
+  // check if there is any in local storage
+  if (savedHighScores === null) {
+    return;
+  }
+
+  var storedHighScores = JSON.parse(savedHighScores);
+
+  for (; i < storedHighScores.length; i++) {
+    var eachNewHighScore = document.createElement("p");
+    eachNewHighScore.innerHTML = storedHighScores[i].initials + ": " + storedHighScores[i].score;
+    listOfHighScores.appendChild(eachNewHighScore);
+  }
 }
 
 // List of questions

@@ -10,12 +10,10 @@
 </head>
 
 <body>
+
     <header>
         <!-- High Scores Link -->
-        <div>
-            
-        </div>
-        <!-- <strong><a href="./highscores.html">View Highscores</a></strong> -->
+        <strong><a href="#" id="viewHighScores">View Highscores</a></strong>
         <!-- Timer -->
         <div class="timer">Time: <span id="gameTimer">0</span></div>
     </header>
@@ -27,26 +25,21 @@
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions withing the time
             <br>limit. Keep in mind that incorrect answers will penalize your score/time <br>by ten seconds!</p>
-        </div>
-        <!-- Start Button -->
-        <div class="centered">
-            <button id="startButton" class="quizButtons" >Start Quiz</button>
+            <!-- Start Button -->
+            <button id="startButton" class="controlButtons centered" >Start Quiz</button>
         </div>
     </div>
 
     <!-- Questions Screen -->
-    <div id="questionsContainer" class="hideContent centered">
+    <div id="questionsScreen" class="hideContent centered">
         <div id="quizQuestions" class="quizQuestionsLayout"></div>
         <ul id="answerButtons" class="answerButtonsLayout"></ul>
-        <div class = "gameControls">
-           <button id="nextButton" class="nextButton btn hideContent">Next</button>
-        </div>
         <hr id="lineBreak" style="display: none">
         <p id="checkAnswer" style="display: none;"></p>
     </div>
     
     <!-- Finished Screen -->
-    <div id="scoreSubmit" class="hideContent">
+    <div id="finishScreen" class="hideContent">
         <div>
             <h2>Finished!</h2>
             <span class="score">You're final score is: <span id="finalScore"></span>/100</span>
@@ -54,24 +47,22 @@
             <br>
             <form class="form-group">
                 <label for="new-score">Enter your name: </label>
-                <input type="text" id="userName">
-                <button type="button" class="btn submitBtn" id="submitBtn">Submit Score</button>
+                <input type="text" id="userInitials">
+                <button type="button" class="btn submitBtn" id="submitInitials">Submit Score</button>
             </form>
         </div>
     </div>
 
     <!-- HighScores Screen -->
-    <div id="highScores" class="hideContent">
+    <div id="highScores" class="hideContent centered">
         <div>
-            <h2>High Scores</h2>
-            <ul id="highScoresList"></ul>
+            <h1>High Scores</h1>
+            <div id="listOfHighScores" class="list-group list-group-flush pt-2 pb-3 mb-2"></div>
+            <button id="goBackButton" class="controlButtons centered" >Back to Quiz</button>
+            <button id="clearHighScoresButton" class="controlButtons centered" >Clear High Scores</button>
         </div>
     </div>
 
-
-
-
 </body>
-
-<script src="./assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </html>
