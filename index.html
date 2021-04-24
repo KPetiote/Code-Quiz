@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
+    <!-- CSS Link -->
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- Boot Strap Link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
 </head>
 
 <body>
@@ -14,6 +17,8 @@
     <header>
         <!-- High Scores Link -->
         <strong><a href="#" id="viewHighScores">View Highscores</a></strong>
+        <!-- Dummy High Score Link -->
+        <strong><a href="#" id="dummyViewHighScores" class="hideContent">View Highscores</a></strong>
         <!-- Timer -->
         <div class="timer">Time: <span id="gameTimer">0</span></div>
     </header>
@@ -39,16 +44,16 @@
     </div>
     
     <!-- Finished Screen -->
-    <div id="finishScreen" class="hideContent">
+    <div id="finishScreen" class="hideContent centered">
         <div>
             <h2>Finished!</h2>
             <span class="score">You're final score is: <span id="finalScore"></span>/100</span>
             <br>
             <br>
             <form class="form-group">
-                <label for="new-score">Enter your name: </label>
+                <label for="new-score">Enter your initials:</label>
                 <input type="text" id="userInitials">
-                <button type="button" class="btn submitBtn" id="submitInitials">Submit Score</button>
+                <button type="button" id="submitInitials" class="controlButtons">Submit Score</button>
             </form>
         </div>
     </div>

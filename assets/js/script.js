@@ -17,6 +17,7 @@ var highScoresEl = document.getElementById("highScores");
 var userInitialsEL = document.getElementById("userInitials");
 var submitInitialsEl = document.getElementById("submitInitials");
 var viewHighScoresEl = document.getElementById("viewHighScores");
+var dummyViewHighScoresEl = document.getElementById("dummyViewHighScores");
 
 /* Event Listeners */
 // Start Quiz Event Listener
@@ -45,31 +46,39 @@ clearHighScoresButtonEl.addEventListener("click", function(){
 });
 
 /* Start Quiz */
+// Declare amount of seconds for the timer
+var secondsLeft = 60;
+
 // startQuizGame function will start the timer & hide the main screen
 function startQuizGame(){
-  setTimer()
+
   startQuizEl.classList.add('hideContent')
   questionsScreenEl.classList.remove('hideContent')
   mainScreenEl.classList.add('hideContent')
-  showQuestions()
-}
 
-// Declare amount of seconds for the timer
-var secondsLeft = 60;
-function setTimer(){
+  viewHighScoresEl.classList.add('hideContent')
+  dummyViewHighScoresEl.classList.remove('hideContent')
+
+  questionInterval = 0;
+  secondsLeft = 59;
   // Sets interval in variable  
   var timeFrame = setInterval(function() {
     secondsLeft--;
-    gameTimer.textContent = secondsLeft;
-    if(secondsLeft === 0){
+    gameTimerEl.textContent = secondsLeft;
+    if(secondsLeft <= 0){
       // Stop execution of action at set interval
       clearInterval(timeFrame);
+      if (questionInterval < questions.length - 1) {
+        gameOver();
     }
-  }, 1000);
+  }
+  },1000);
+
+  showQuestions();
 }
 
 function showQuestions(){
- let quizQuestion = questions[questionInterval].question;
+  let quizQuestion = questions[questionInterval].question;
   quizQuestionsEl.textContent = quizQuestion; 
   // loop over questions[questionInterval].answers
   var buttonSection = document.getElementById("answerButtons");
@@ -127,7 +136,7 @@ function storeUserScores(event) {
     return;
   } 
 
-  // Store scores into local storage
+  // Stores score into local storage
   var savedHighScores = localStorage.getItem("high scores");
   var highScoresArray;
 
@@ -161,11 +170,11 @@ function showHighScores() {
   questionsScreenEl.classList.add('hideContent')
   finishScreenEl.classList.add('hideContent')
   highScoresEl.classList.remove('hideContent')
-
+  secondsLeft = 0;
 
   var savedHighScores = localStorage.getItem("high scores");
 
-  // check if there is any in local storage
+  // Check if anything is store in local storage
   if (savedHighScores === null) {
     return;
   }
@@ -204,7 +213,6 @@ const questions = [
   },
 
   {
-
     question: 'What does CSS stand for?',
     answers: [
       { text: 'Current Style Sheets', correct: false },
